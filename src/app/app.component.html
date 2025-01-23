@@ -1,11 +1,40 @@
+
 <app-navbar></app-navbar>
-<div class="bg-gray-100 h-screen shadow-inner-2xl shadow-gray-900">
-  <div class="flex items-center justify-center h-full">
+
+<div class="container bg-opacity-5">
+  <div class="flex flex-1 w-full">
     <app-sidebar></app-sidebar>
-    <div class="flex items-center justify-center w-full">
-      <app-body-application></app-body-application>
+    <div class="container">
+       <app-body-application></app-body-application>
     </div>
   </div>
-
-
 </div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .flex {
+    display: flex;
+    flex: 1;
+  }
+
+  .content {
+    flex: 1;
+    margin-top: 7%;
+    padding: 32px 44px;
+    overflow: auto;
+    margin-left: 30%; /* Ajustez cette valeur selon la largeur de votre sidebar */
+  }
+
+  @media (max-width: 640px) {
+    .content {
+      margin-left: 0;
+      margin-top: 12%/* Supprime la marge gauche pour les écrans inférieurs à sm */
+    }
+  }
+</style>
+

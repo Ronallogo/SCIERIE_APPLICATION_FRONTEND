@@ -3,14 +3,16 @@ import {initFlowbite} from 'flowbite';
 import {SidebarComponent} from './Page/sidebar/sidebar.component';
 import {NavbarComponent} from './Page/navbar/navbar.component';
 import {BodyApplicationComponent} from './Page/body-application/body-application.component';
+import {RouterOutlet} from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
   imports: [
-    SidebarComponent ,
+    SidebarComponent,
     NavbarComponent,
-    BodyApplicationComponent
+    BodyApplicationComponent,
+    RouterOutlet
   ],
   templateUrl: './app.component.html',
   standalone: true,
