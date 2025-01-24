@@ -12,7 +12,7 @@ import {RouterOutlet} from '@angular/router';
     SidebarComponent,
     NavbarComponent,
     BodyApplicationComponent,
-    RouterOutlet
+
   ],
   templateUrl: './app.component.html',
   standalone: true,

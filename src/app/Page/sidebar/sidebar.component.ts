@@ -8,7 +8,7 @@ import {NgClass} from '@angular/common';
   imports: [
     RouterLinkActive,
     RouterLink,
-    RouterOutlet,
+
     NgClass
 
 

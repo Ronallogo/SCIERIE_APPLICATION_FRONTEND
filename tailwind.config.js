@@ -3,8 +3,9 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
   ],
-  theme: {
+
     theme: {
+
       screens: {
         'sm': '640px',
         // => @media (min-width: 640px) { ... }
@@ -23,9 +24,9 @@ module.exports = {
       }
     } ,
     extend: {},
-  },
+
   plugins: [
-    require('tailwind-scrollbar'),
+
   ],
 }
 

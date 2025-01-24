@@ -6,8 +6,8 @@ import {EssenceComponent} from '../essence/body/essence.component';
 @Component({
   selector: 'app-body-application',
   imports: [
-    EssenceListComponent,
-    RouterOutlet,
+
+
     EssenceComponent
   ],
   templateUrl: './body-application.component.html',
