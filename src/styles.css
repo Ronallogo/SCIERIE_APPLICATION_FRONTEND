@@ -16,3 +16,41 @@
 html, body { height: 100%; }
 body { margin: 0;
   font-family: 'Lexend Giga', sans-serif}
+/* Pour les navigateurs WebKit (Chrome, Safari, etc.) */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Pour Firefox */
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes moveLeftRight {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+.moving-up-down {
+  animation: moveUpDown 3s ease-in-out infinite;
+}
+
+.moving-left-right {
+  animation: moveLeftRight 4s ease-in-out infinite;
+}
