@@ -1,0 +1,101 @@
+@if (service.hide == "liste"){
+  <div  [ngClass]="{'animate__animated animate__fadeIn': service.hide == 'liste'}" class="flex flex-col md:flex-row mb-4 space-y-4 md:space-y-0 md:space-x-4 justify-center">
+    <button  (click)="ajouter()" style="margin-right: 30%" type="button" class="w-full md:w-60 text-white text-lg font-bold bg-blue-700 hover:bg-blue-100 hover:text-blue-600 focus:ring-4 focus:ring-blue-300 rounded-lg px-5 py-2.5 mb-2">AJOUTER</button>
+
+    <form style="width:100%"  [formGroup]="searchForm"  class="flex items-center">
+      <label for="simple-search" class="sr-only">Search</label>
+      <div class="relative w-full">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
+          </svg>
+        </div>
+        <input formControlName="keyword" type="text" id="simple-search" class="h-10 bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:outline-none block w-full pl-10 p-2.5" placeholder="Rechercher un lot de grume..." required />
+      </div>
+      <button  (click)="search()" class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300    ">
+        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+        <span class="sr-only">Recherhe</span>
+      </button>
+    </form>
+  </div>
+}
+
+<div class="overflow-x-auto grid-cols-1 gap-y-2">
+  @if (service.hide == "liste"){
+    <table
+      [ngClass]="{'animate__animated animate__fadeInDown': service.hide =='liste'}"
+      class="   font-bold text-2xl h-full w-full text-left rtl:text-right text-gray-500">
+      <thead class="rounded-2xl    text-sm font-extrabold   text-white uppercase bg-green-600">
+      <tr>
+        @for(e of entete ; track  e){
+          <th scope="col" class="   items-center justify-center  px-6 py-3"> {{e}}</th>
+        }
+
+      </tr>
+      </thead>
+      <tbody >
+        @for(t of grumes  | paginate: {
+          itemsPerPage: 5,
+          currentPage: currentPage,
+          totalItems: grumes.length} ; track  t.id_grume){
+          <tr  class=" animate__animated animate__fadeIn odd:bg-white bg-gray-50 border-b">
+            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">{{grumes.indexOf(t) + 1}}</th>
+            <td class="px-6 py-4"> {{t.code_lots}}</td>
+            <td class="px-6 py-4">{{t.nom_essence}} </td>
+            <td class="px-6 py-4">{{t.entree}} </td>
+            <td class="px-6 py-4">{{t.quantite}} </td>
+            <td class="px-6 py-4 grid  grid-cols-3 gap-3 ">
+              <a  (click)="caracteristique()">
+                <svg width="30px" height="30px" viewBox="-3 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>stats</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-314.000000, -673.000000)" fill="#ffae00"> <path d="M328,673 L326,673 C324.896,673 324,673.896 324,675 L324,703 C324,704.104 324.896,705 326,705 L328,705 C329.104,705 330,704.104 330,703 L330,675 C330,673.896 329.104,673 328,673 L328,673 Z M338,689 L336,689 C334.896,689 334,689.896 334,691 L334,703 C334,704.104 334.896,705 336,705 L338,705 C339.104,705 340,704.104 340,703 L340,691 C340,689.896 339.104,689 338,689 L338,689 Z M318,682 L316,682 C314.896,682 314,682.896 314,684 L314,703 C314,704.104 314.896,705 316,705 L318,705 C319.104,705 320,704.104 320,703 L320,684 C320,682.896 319.104,682 318,682 L318,682 Z" id="stats" sketch:type="MSShapeGroup"> </path> </g> </g> </g>
+                </svg>
+              </a>
+              <a   (click)="DataTransactionFunction(t)"  >
+                <svg     width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="edit"> <g> <path d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8" fill="none" stroke="#00ff6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <polygon fill="none" points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8" stroke="#00ff6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> </g> </g> </g> </g>
+                </svg>
+              </a>
+              <a  (click)="delete(t.id_grume)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                <svg   width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 12V17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 12V17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+                </svg>
+              </a>
+            </td>
+          </tr>
+        }
+
+
+      </tbody>
+
+    </table>
+    @if(grumes.length == 0){
+      <div class="   px-96 flex justify-center items-center align-middle animate__animated animate__fadeIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="64" height="64" style="shape-rendering: auto; display: block; background: rgb(255, 255, 255);" xmlns:xlink="http://www.w3.org/1999/xlink"><g><circle stroke-linecap="round" fill="none" stroke-dasharray="50.26548245743669 50.26548245743669" stroke="#204d0d" stroke-width="2" r="32" cy="50" cx="50">
+          <animateTransform values="0 50 50;360 50 50" keyTimes="0;1" dur="1.4705882352941175s" repeatCount="indefinite" type="rotate" attributeName="transform"></animateTransform>
+        </circle><g></g></g><!-- [ldio] generated by https://loading.io --></svg>
+      </div>
+    }
+    @if(grumes.length > 0){
+      <div class=" flex justify-center items-center w-full  ">
+        <pagination-controls
+          class="pagination-controls"
+          (pageChange)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+          previousLabel="Précédant"
+          nextLabel="suivant"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+
+
+        >
+        </pagination-controls>
+      </div>
+
+    }
+  }
+
+
+
+
+
+</div>
