@@ -3,7 +3,7 @@ import {EssenceListComponent} from '../essence/essence-list/essence-list.compone
 import {RouterOutlet} from '@angular/router';
 import {EssenceComponent} from '../essence/body/essence.component';
 import {ServicePrincipal} from '../ServicePrincipal/service-principal.service';
-import {BodyDashbordComponent} from '../body-dashbord/body-dashbord.component';
+import {BodyDashbordComponent} from '../dashboard/body-dashbord/body-dashbord.component';
 import {ClientComponent} from '../client/body/client/client.component';
 
 @Component({

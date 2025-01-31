@@ -11,7 +11,7 @@ import {ServicePrincipal} from '../ServicePrincipal/service-principal.service';
     RouterLink,
 
     NgClass,
-    RouterOutlet
+
 
 
   ],
