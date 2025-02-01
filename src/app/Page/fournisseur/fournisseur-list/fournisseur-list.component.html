@@ -25,7 +25,7 @@
   </div>
 }
 
-<div class="overflow-x-auto grid-cols-1 gap-y-2">
+<div class="overflow-x-auto grid-cols-1 gap-y-2 sidebar-scrollbar">
   @if (service.hide == "liste"){
     <table
       [ngClass]="{'animate__animated animate__fadeInDown': service.hide =='liste'}"
@@ -40,13 +40,18 @@
       </thead>
       <tbody >
         @for(t of fournisseurs  | paginate: {
-          itemsPerPage: 5,
+          itemsPerPage: 4,
           currentPage: currentPage,
-          totalItems: fournisseurs.length}; ; track  t.id_fournisseur){
+          totalItems: fournisseurs.length} ; track  t.id_fournisseur){
           <tr  class=" animate__animated animate__fadeIn odd:bg-white bg-gray-50 border-b">
             <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">{{fournisseurs.indexOf(t) + 1}}</th>
-            <td class="px-6 py-4"></td>
-
+            <td class="px-6 py-4">{{t.nom_fournisseur}}</td>
+            <td class="px-6 py-4">{{t.adresse_fournisseur}}</td>
+            <td class="px-6 py-4">{{t.email_fournisseur}}</td>
+            <td class="px-6 py-4">{{t.fax_fournisseur}}</td>
+            <td class="px-6 py-4">{{t.telephone_fournisseur}}</td>
+            <td class="px-6 py-4">{{t.taxe_abbatage}}</td>
+            <td class="px-6 py-4">{{t.nom_ville}}</td>
             <td class="px-6 py-4 grid  grid-cols-2 gap-3 ">
               <a   (click)="modifier(t)"  >
                 <svg     width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="edit"> <g> <path d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8" fill="none" stroke="#00ff6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <polygon fill="none" points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8" stroke="#00ff6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> </g> </g> </g> </g>

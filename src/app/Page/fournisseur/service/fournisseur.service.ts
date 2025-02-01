@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {BASE_URL} from '../../../../../env/env';
+import {Observable} from 'rxjs';
+import {Fournisseur} from '../../../models/Models';
 
 @Injectable({
   providedIn: 'root'
@@ -6,5 +10,32 @@ import { Injectable } from '@angular/core';
 export class FournisseurService {
   hide: string = "liste";
 
-  constructor() { }
+
+  createFournisseur: boolean = false;
+
+
+
+  constructor(protected http: HttpClient) { }
+
+  getAllFournisseur():Observable<any>{
+    return this.http.get(BASE_URL + "/fournisseur/all");
+  }
+
+
+  getTaxe():Observable<any>{
+    return this.http.get(BASE_URL + "/fournisseur/taxe_moy");
+  }
+
+  create(f: {
+    nom_ville: string;
+    adresse_fournisseur: string;
+    id_fournisseur: null;
+    telephone_fournisseur: string;
+    email_fournisseur: string;
+    fax_fournisseur: string;
+    taxe_abbatage: number;
+    nom_fournisseur: string
+  }): Observable<any>{
+      return this.http.post(BASE_URL+"/fournisseur/create" , f);
+  }
 }

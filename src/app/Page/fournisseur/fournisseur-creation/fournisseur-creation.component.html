@@ -1,1 +1,88 @@
-<p>fournisseur-creation works!</p>
+<div  class=" space-y-2 grid-cols-1" >
+  <div class="items-center justify-start text-center  text-3xl font-bold">
+    <p class="space-y-2"> ENREGISTRER UN NOUVEAU FOURNISSEUR</p>
+  </div>
+  <hr style="margin-bottom: 2.8%">
+  <form [formGroup]="form"  (ngSubmit)="create()" class="w-full h-full px-4 space-y-5  ">
+
+    <div class="grid md:grid-cols-2   md:gap-6">
+      <div class="relative z-0 w-full   mb-5 group">
+        <input
+          type="text"  formControlName="nom_fournisseur"    id="nom_fournisseur" class="     block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="nom_fournisseur" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nom de fournisseur</label>
+
+        @if( form.controls.nom_fournisseur.invalid && form.controls.nom_fournisseur.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Nom de fournisseur invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="text" formControlName="adresse_fournisseur" name="adresse_fournisseur"  id="adresse_fournisseur"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="adresse_fournisseur" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Adresse fournisseur</label>
+        @if( form.controls.adresse_fournisseur.invalid && form.controls.adresse_fournisseur.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Adresse_fournisseur invalide!!</span>
+          </div>}
+      </div>
+
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="underline_select" class="sr-only">Nom de ville</label>
+        <select  id="underline_select" formControlName="nom_ville"  class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          <option selected>Choisir une ville</option>
+          <option *ngFor="let v of list"  [ngValue]="v.nom_ville">{{ v.nom_ville}}</option>
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="email" formControlName="email_fournisseur"  name="email_fournisseur" id="email_fournisseur" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="email_fournisseur"  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email fournisseur</label>
+        @if( form.controls.email_fournisseur.invalid && form.controls.email_fournisseur.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  Email invalide!!</span>
+          </div>}
+      </div>
+
+    </div>
+    <div class="grid md:grid-cols-3 md:gap-6">
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="number" formControlName="fax_fournisseur"   name="eneur_en_eau" id="fax_fournisseur" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="teneur_en_eau" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fax fournisseur</label>
+        @if( form.controls.fax_fournisseur.invalid && form.controls.fax_fournisseur.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  Fax invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="number" formControlName="telephone_fournisseur"  name="email_fournisseur" id="telephone_fournisseur" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="email_fournisseur"  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Telephone fournisseur</label>
+        @if( form.controls.telephone_fournisseur.invalid && form.controls.telephone_fournisseur.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  Phone invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="number" formControlName="taxe_abbatage"   name="taxe_abbatage" id="teneur_en_eau" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="teneur_en_eau" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Taxe abbatage</label>
+        @if( form.controls.taxe_abbatage.invalid && form.controls.taxe_abbatage.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> taxe invalide!!</span>
+          </div>}
+      </div>
+    </div>
+    <div class="grid-cols-3 gap-4 space-x-4">
+      <button type="submit" [disabled]="form.invalid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      <button type="reset"  (click)="resetView()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Retour</button>
+    </div>
+
+  </form>
+  <div class="h-4"></div>
+</div>
+
+
