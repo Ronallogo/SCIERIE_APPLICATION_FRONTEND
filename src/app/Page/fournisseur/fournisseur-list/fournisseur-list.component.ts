@@ -3,11 +3,12 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {NgClass} from '@angular/common';
 import {FournisseurService} from '../service/fournisseur.service';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {Fournisseur} from '../../../models/Models';
+import {Essence_2, Fournisseur} from '../../../models/Models';
 import {FournisseurCreationComponent} from '../fournisseur-creation/fournisseur-creation.component';
 import {FournisseurUpdateComponent} from '../fournisseur-update/fournisseur-update.component';
 import {PortService} from '../../port_ville_pays/port-service/port.service';
 import {forkJoin} from 'rxjs';
+import {_deletion, _error} from '../../../models/notification';
 
 @Component({
   selector: 'app-fournisseur-list',
@@ -45,15 +46,40 @@ export class FournisseurListComponent implements OnInit {
   }
 
 
-  modifier(t: any) {
+  modifier(essence : Fournisseur) {
+    this.service.hide = "modifier";
+    this.service.setFournisseur(essence);
 
   }
 
-  delete(id_fournisseur: any) {
+  async delete(id_fournisseur: any) {
+    let response: boolean = await _deletion("Voulez-vous supprimer ce fournisseur?");
 
+    if (!response) return;
+    this.service.delete(id_fournisseur).subscribe(data => {
+      this.getAllFournisseur();
+    } , error => {
+        _error(null);
+        console.log(error);
+    })
   }
 
-  search() {}
+  search(){
+    console.log(this.searchForm.getRawValue().keyword)
+    if(this.searchForm.getRawValue().keyword !=  ""){
+      this.service.searching(String(this.searchForm.getRawValue().keyword)).subscribe(data =>{
+        console.log(data);
+        this.fournisseurs = data ;
+
+      } , error => {
+        console.log(error)
+      })
+    }
+    else{
+      this.getAllFournisseur();
+    }
+  }
+
 
   pageChanged($event: number) {
     this.currentPage = $event ;
@@ -70,6 +96,9 @@ export class FournisseurListComponent implements OnInit {
 
 
   }
+
+
+
 
 
 

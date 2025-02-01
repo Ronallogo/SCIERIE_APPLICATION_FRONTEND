@@ -34,8 +34,6 @@ export class EssenceComponent implements  OnInit{
      setInterval(()=>{
        this.service.mercuriale().subscribe(data=>{
          this.mercuriale = Number(data).toFixed(2);
-
-         console.log(data)
        } , err => console.log(err));
      } , 8000)
 

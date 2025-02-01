@@ -44,13 +44,8 @@ export class EssenceUpdateComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
-
     this.init()
     console.log({...this.form.getRawValue()})
-
-
-
   }
 
   modifier() {

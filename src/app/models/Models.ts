@@ -89,4 +89,14 @@ export interface Fournisseur{
 }
 
 
+export interface  Ravitaillement{
+    id_rav : number ;
+    id_fourniseur : number ;
+    nom_fournisseur  :number ;
+    code_rav  : string;
+    date_rav : string ;
+    prix_rav :number;
+}
+
+
 

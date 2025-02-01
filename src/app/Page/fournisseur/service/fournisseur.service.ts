@@ -10,7 +10,7 @@ import {Fournisseur} from '../../../models/Models';
 export class FournisseurService {
   hide: string = "liste";
 
-
+  fournisseur! : Fournisseur;
   createFournisseur: boolean = false;
 
 
@@ -37,5 +37,34 @@ export class FournisseurService {
     nom_fournisseur: string
   }): Observable<any>{
       return this.http.post(BASE_URL+"/fournisseur/create" , f);
+  }
+
+  searching(s: string):Observable<any> {
+      return this.http.get(BASE_URL+"/fournisseur/search/"+s);
+  }
+
+  setFournisseur(f: Fournisseur) {
+      this.fournisseur = f ;
+  }
+
+  getFournisseur(){
+      return this.fournisseur ;
+  }
+
+  edit(param: {
+    nom_ville: string;
+    adresse_fournisseur: string;
+    id_fournisseur: number;
+    telephone_fournisseur: string;
+    email_fournisseur: string;
+    fax_fournisseur: string;
+    taxe_abbatage: number;
+    nom_fournisseur: string
+  }) {
+      return this.http.put(BASE_URL+"/fournisseur/edit" , param)
+  }
+
+  delete(id : number):Observable<any> {
+      return this.http.delete(BASE_URL+"/fournisseur/delete/"+id);
   }
 }

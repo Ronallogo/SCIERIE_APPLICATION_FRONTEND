@@ -58,7 +58,7 @@ export class EssenceListComponent implements OnInit{
   getAllEssence(){
       this.service.getAllEssence().subscribe(data=>{
           this.essences = data;
-          console.log(data.length)
+
            localStorage.setItem("qtEssence" , String(data.length));
 
       })
@@ -81,7 +81,7 @@ export class EssenceListComponent implements OnInit{
       console.log(this.searchForm.getRawValue().keyword)
       if(this.searchForm.getRawValue().keyword !=  ""){
           this.service.searching(String(this.searchForm.getRawValue().keyword)).subscribe(data =>{
-              console.log(data);
+
               this.essences = data ;
 
           } , error => {
