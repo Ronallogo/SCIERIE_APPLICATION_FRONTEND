@@ -96,6 +96,7 @@ export interface  Ravitaillement{
     code_rav  : string;
     date_rav : string ;
     prix_rav :number;
+    qtBois : number ;
 }
 
 

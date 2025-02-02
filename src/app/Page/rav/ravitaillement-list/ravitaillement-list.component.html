@@ -42,10 +42,14 @@
         @for(t of ravs | paginate: {
           itemsPerPage: 4,
           currentPage: currentPage,
-          totalItems: ravs.length} ; track  t.id_rav){
-          <tr  class=" animate__animated animate__fadeIn odd:bg-white bg-gray-50 border-b">
+          totalItems: ravs.length} ; track  t){
+          <tr  class=" text-base animate__animated animate__fadeIn odd:bg-white bg-gray-50 border-b">
             <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">{{ravs.indexOf(t) + 1}}</th>
             <td class="px-6 py-4">{{t.nom_fournisseur}}</td>
+            <td class="px-6 py-4">{{t.code_rav}}</td>
+            <td class="px-6 py-4">{{t.date_rav}}</td>
+            <td class="px-6 py-4">{{t.prix_rav}}</td>
+            <td class="px-8 py-4 ">{{t.qtBois}}</td>
 
             <td class="px-6 py-4 grid  grid-cols-2 gap-3 ">
               <a   (click)="modifier(t)"  >
@@ -94,11 +98,11 @@
     }
 
   }
-  @else if(service.hide=='modifier'){
+  @else if(service.hide =='modifier'){
     <app-ravitaillement-update [ngClass]="{'animate__animated animate__fadeInUp':service.hide=='modifier'}"></app-ravitaillement-update>
   }
   @else if(service.hide=='ajouter'){
-    <app-ravitaillment-creation [ngClass]="{'animate__animated animate__fadeInUp':service.hide=='ajouter'}"></app-ravitaillment-creation>
+    <app-ravitaillement-creation [ngClass]="{'animate__animated animate__fadeInUp':service.hide=='ajouter'}"></app-ravitaillement-creation>
   }
 
 

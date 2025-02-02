@@ -8,8 +8,6 @@ import {FournisseurService} from '../service/fournisseur.service';
 @Component({
   selector: 'app-fournisseur',
   imports: [
-    ChartEssenceStockComponent,
-    EssenceListComponent,
     FournisseurListComponent,
     RavitaillementListComponent
   ],
@@ -29,6 +27,8 @@ export class FournisseurComponent implements OnInit{
   ngOnInit(): void {
      setInterval(()=>{
         this.taxe = Number(localStorage.getItem("tax_moy")).toFixed(2)
+       this.qtRav = Number(localStorage.getItem("qtRav"));
+
      } , 5000);
   }
 

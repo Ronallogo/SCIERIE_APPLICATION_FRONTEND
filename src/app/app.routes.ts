@@ -7,7 +7,7 @@ import {ClientComponent} from './Page/client/body/client/client.component';
 import {GrumeComponent} from './Page/grume/grume/grume.component';
 import {FournisseurComponent} from './Page/fournisseur/fournisseur/fournisseur.component';
 import {PortVillePaysComponent} from './Page/port_ville_pays/port-ville-pays/port-ville-pays.component';
-import {RavitaillementComponent} from './Page/rav/ravitaillement/ravitaillement.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'essence', pathMatch: 'full' },
@@ -19,6 +19,6 @@ export const routes: Routes = [
   { path: 'grume', component: GrumeComponent },
   { path: 'fournisseur', component: FournisseurComponent },
   { path: 'port-ville-pays', component:  PortVillePaysComponent },
-  { path: 'rav', component:  RavitaillementComponent },
+
 
 ];
