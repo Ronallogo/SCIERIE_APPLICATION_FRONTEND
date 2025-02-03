@@ -16,6 +16,7 @@ export class RavService {
 
 
   create(rav : any) : Observable<any> {
+      console.log(rav);
       return this.http.post(BASE_URL+"/rav/create" , rav)
   }
 

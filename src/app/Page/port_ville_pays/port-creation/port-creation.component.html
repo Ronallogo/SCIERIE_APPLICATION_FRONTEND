@@ -17,10 +17,11 @@
           </div>}
       </div>
       <div class="relative z-0 w-full mb-5 group">
-        <label for="underline_select" class="sr-only">Nom de ville</label>
-        <select  id="underline_select" formControlName="ville"  class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-          <option selected>Choisir une ville</option>
-          <option *ngFor="let v of list"  [ngValue]="v">{{ v.nom_ville}}</option>
+        <label for="underline_select" class="absolute text-base text-gray-400">Nom de  la ville</label>
+        <select  id="underline_select" formControlName="nom_fourniseur"  class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          @for(v of list   ; track  v){
+            <option  selected [ngValue]="v.nom_ville">{{ v.nom_ville}}</option>
+          }
         </select>
       </div>
       <div class="grid-cols-2 gap-4 space-x-4">

@@ -10,7 +10,7 @@ import {_confirmation} from '../../../models/notification';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    NgForOf
+
   ],
   templateUrl: './port-creation.component.html',
   standalone: true,

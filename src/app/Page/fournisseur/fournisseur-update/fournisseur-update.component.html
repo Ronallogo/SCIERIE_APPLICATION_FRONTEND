@@ -30,7 +30,7 @@
     </div>
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-5 group">
-        <label for="underline_select" class="sr-only">Nom de ville</label>
+        <label for="underline_select" class="absolute text-[10px] text-gray-400">Nom de ville</label>
         <select  id="underline_select" formControlName="nom_ville"  class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
           <option selected>Choisir une ville</option>
           <option *ngFor="let v of list"  [ngValue]="v.nom_ville">{{ v.nom_ville}}</option>
