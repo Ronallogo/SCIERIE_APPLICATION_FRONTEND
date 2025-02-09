@@ -67,4 +67,8 @@ export class FournisseurService {
   delete(id : number):Observable<any> {
       return this.http.delete(BASE_URL+"/fournisseur/delete/"+id);
   }
+
+  getDataChart():Observable<any> {
+      return this.http.get(BASE_URL+"/fournisseur/dataChart")
+  }
 }

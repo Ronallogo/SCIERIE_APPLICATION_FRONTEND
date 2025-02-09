@@ -26,7 +26,6 @@ export interface Essence_2 extends Essence_1   {
 export interface Grume_1{
 
   code_lots : string ;
-  localisaton : string ;
   longueur_moy : number ;
   diam_moy : number ;
   poids_moy :number;
@@ -35,7 +34,6 @@ export interface Grume_1{
   qualite :number;
   id_essence :number;
   nom_essence :string;
-  poids_grume : number ;
   entree :string;
 
 
@@ -91,7 +89,7 @@ export interface Fournisseur{
 
 export interface  Ravitaillement{
     id_rav : number ;
-    id_fourniseur : number ;
+    id_fournisseur : number ;
     nom_fournisseur  :number ;
     code_rav  : string;
     date_rav : string ;
@@ -99,5 +97,15 @@ export interface  Ravitaillement{
     qtBois : number ;
 }
 
+export const MONTHS   = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
 
+export interface data_for_chart{
+    nbr_rav : number ,
+    month : number ,
+}
+
+export interface chartTaxeFournisseur{
+   nom_fournisseurs  : string[];
+   taxe_abbatages : number[] ;
+}

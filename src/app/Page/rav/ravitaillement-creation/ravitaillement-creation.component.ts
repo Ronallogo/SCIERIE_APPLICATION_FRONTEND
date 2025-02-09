@@ -35,10 +35,10 @@ export class RavitaillementCreationComponent  implements OnInit{
 
   create() {
     this.service.create({
-        qtBois : this.form.value.qtBois ,
-        id_fournisseur : this.form.value.nom_fournisseur ,
-        date_rav : this.form.value.date_rav ,
-        prix_rav : this.form.value.prix_rav
+        qtBois : Number(this.form.value.qtBois) ,
+        id_fournisseur : Number(this.form.value.nom_fournisseur ),
+        date_rav : String(this.form.value.date_rav ),
+        prix_rav : Number(this.form.value.prix_rav)
     }).subscribe(data=>{
         console.log(data);
         _confirmation("Ravitaillement enregistré avec succès!!!")

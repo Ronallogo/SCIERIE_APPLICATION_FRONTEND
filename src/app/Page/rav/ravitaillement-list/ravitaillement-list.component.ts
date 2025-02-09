@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FournisseurCreationComponent} from "../../fournisseur/fournisseur-creation/fournisseur-creation.component";
-import {FournisseurUpdateComponent} from "../../fournisseur/fournisseur-update/fournisseur-update.component";
+
+
+
 import {NgxPaginationModule} from "ngx-pagination";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {RavService} from '../service/rav.service';
@@ -9,7 +10,7 @@ import {Ravitaillement} from '../../../models/Models';
 import {RavitaillementUpdateComponent} from '../ravitaillement-update/ravitaillement-update.component';
 import {RavitaillementCreationComponent} from '../ravitaillement-creation/ravitaillement-creation.component';
 import {_deletion} from '../../../models/notification';
-import {readUsedSize} from 'chart.js/helpers';
+
 
 @Component({
   selector: 'app-ravitaillement-list',
@@ -41,6 +42,13 @@ export class RavitaillementListComponent implements OnInit {
 
   ngOnInit(): void {
       this.getAllRav();
+      setInterval(()=>{
+          if(this.service.update) {
+              this.getAllRav();
+              this.service.update = false ;
+          }
+      })
+
   }
 
   ajouter() {
@@ -66,11 +74,11 @@ export class RavitaillementListComponent implements OnInit {
     this.service.setRav(t);
   }
 
-  async delete(id_rav: number) {
+  async delete(code_rav: string) {
     let response = await _deletion("Voulez vous supprimez ce ravitaillement!!!!") ;
     if(!response) return ;
 
-    this.service.delete(id_rav).subscribe(data => {
+    this.service.delete(code_rav).subscribe(data => {
       this.getAllRav();
     },error => {
         console.log(error);

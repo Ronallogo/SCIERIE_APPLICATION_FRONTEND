@@ -1,1 +1,62 @@
-<p>ravitaillement-update works!</p>
+
+<div  class=" space-y-2 grid-cols-1" >
+  <div class="items-center justify-start text-center  text-3xl font-bold">
+    <p class="space-y-2">MODIFICATION DU RAVITAILLEMENT</p>
+  </div>
+  <hr style="margin-bottom: 2.8%">
+  <form [formGroup]="form"  (ngSubmit)="modifier()" class="w-full h-full px-4 space-y-5  ">
+
+    <div class="grid md:grid-cols-2   md:gap-6">
+      <div class="relative z-0 w-full   mb-5 group">
+        <input
+          type="date"  formControlName="date_rav"    id="date_rav" class="     block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="date_rav" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Date de ravitaillement</label>
+
+        @if( form.controls.date_rav.invalid && form.controls.date_rav.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Date non inserée!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="text" formControlName="prix_rav" name="prix_rav"  id="prix_rav"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="prix_rav" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"> Prix du ravitaillement</label>
+        @if( form.controls.prix_rav.invalid && form.controls.prix_rav.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Prix invalide!!</span>
+          </div>}
+      </div>
+
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="underline_select" class="absolute text-[10px] text-gray-400 mb-3  ">Nom de fournisseur</label>
+        <select  id="underline_select" formControlName="nom_fournisseur"  name="nom_fournisseur" class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          @for(v of listFournisseur   ; track  v){
+            <option  selected [ngValue]="v.nom_fournisseur">{{v.nom_fournisseur}}</option>
+          }
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="email" formControlName="qtBois"  name="qtBois" id="qtBois" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="qtBois"  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quantite de bois</label>
+        @if( form.controls.qtBois.invalid && form.controls.qtBois.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  quantite  invalide!!</span>
+          </div>}
+      </div>
+
+    </div>
+
+    <div class="grid-cols-3 gap-4 space-x-4">
+      <button type="submit" [disabled]="form.invalid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      <button type="reset"  (click)="resetView()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Retour</button>
+    </div>
+
+  </form>
+  <div class="h-4"></div>
+</div>
+
+

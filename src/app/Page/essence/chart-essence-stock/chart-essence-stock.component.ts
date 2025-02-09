@@ -29,11 +29,14 @@ export class ChartEssenceStockComponent implements OnInit {
     // Utilisation de forkJoin pour attendre que les deux appels HTTP soient terminés
     forkJoin({
       dataChart: this.service_essence.getDataChart(),
+      plusAcheter : this.service_essence.plusAcheter()
 
     }).subscribe({
       next: (result) => {
         // Les données sont maintenant disponibles
-        this.dataChart = result.dataChart
+        this.dataChart = result.dataChart;
+        console.log("essence plus achter : " , result.plusAcheter);
+        localStorage.setItem("plusAcheter" ,  JSON.stringify(result.plusAcheter));
 
         // Remplir les noms des essences et les quantités des grumes
         this.names = this.dataChart.map(data => data.essence);

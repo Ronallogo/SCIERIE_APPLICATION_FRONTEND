@@ -4,13 +4,22 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {GrumeService} from '../service/grume.service';
 import {Grume_2} from '../../../models/Models';
+import {FournisseurUpdateComponent} from '../../fournisseur/fournisseur-update/fournisseur-update.component';
+import {CreationGrumeComponent} from '../creation-grume/creation-grume.component';
+import {UpdateGrumeComponent} from '../update-grume/update-grume.component';
+import {DetailGrumeComponent} from '../detail-grume/detail-grume.component';
+
 
 @Component({
   selector: 'app-list-grume',
   imports: [
     NgClass,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FournisseurUpdateComponent,
+    CreationGrumeComponent,
+    UpdateGrumeComponent,
+    DetailGrumeComponent
   ],
   templateUrl: './list-grume.component.html',
   standalone: true,
@@ -36,7 +45,7 @@ export class ListGrumeComponent implements  OnInit{
   }
 
   ajouter() {
-
+    this.service.hide = "ajouter"
   }
   getAll(){
       this.service.getAll().subscribe(data=>{
@@ -57,11 +66,22 @@ export class ListGrumeComponent implements  OnInit{
   }
 
   search() {
-
+      if(this.searchForm.value.keyword!== ""){
+            this.service.search(String(this.searchForm.value.keyword)).subscribe(data=>{
+                this.grumes  = data ;
+                console.log(data);
+            } , error=>{
+                console.log(error)
+            })
+      }else{
+          this.getAll() ;
+      }
   }
 
   DataTransactionFunction(t: any) {
       this.service.setGrume(t);
+      this.service.hide = "modifier"
+
   }
 
   delete(id_grume: any) {
@@ -72,7 +92,8 @@ export class ListGrumeComponent implements  OnInit{
     this.currentPage = $event ;
   }
 
-  caracteristique() {
-
+  caracteristique(t : Grume_2) {
+      this.service.hide = "caracteristiques"
+      this.service.setGrume(t);
   }
 }

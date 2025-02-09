@@ -54,4 +54,8 @@ export class EssenceService {
   delete(id : number) : Observable<any> {
       return  this.http.delete(BASE_URL+"/essence/delete/" + id);
   }
+
+  plusAcheter():Observable<any>{
+      return this.http.get(BASE_URL+"/essence/plusAcheter");
+  }
 }

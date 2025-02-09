@@ -1,1 +1,86 @@
-<p>creation-grume works!</p>
+<div  class=" space-y-2 grid-cols-1" >
+  <div class="items-center justify-start text-center  text-3xl font-bold">
+    <p class="space-y-2"> ENREGISTRER UN NOUVEAU LOTS DE GRUMES</p>
+  </div>
+  <hr style="margin-bottom: 2.8%">
+  <form [formGroup]="form"  (ngSubmit)="create()" class="w-full h-full px-4 space-y-5  ">
+
+    <div class="grid md:grid-cols-3   md:gap-6">
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="number" formControlName="longueur_moy" name="longueur_moy"  id="longueur_moy"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="longueur_moy" class="no-spinner peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-extrabold">Longueur moyenne du lot <span class="text-red-700">(Mt)</span></label>
+
+        @if( form.controls.longueur_moy.invalid && form.controls.longueur_moy.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  Longueur invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="number" formControlName="diam_moy" name="longueur_moy"  id="diam_moy"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="longueur_moy" class="no-spinner peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-extrabold"> Diametre moyen du lot <span class="text-red-700">(Mt)</span> </label>
+        @if( form.controls.diam_moy.invalid && form.controls.diam_moy.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  diametre  invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="number" formControlName="quantite" name="quantite"  id="quantite"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="longueur_moy" class="no-spinner peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-extrabold">  Nombre de bois du lot <span class="text-red-700">(Bs)</span> </label>
+        @if( form.controls.quantite.invalid && form.controls.quantite.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  quantite  invalide!!</span>
+          </div>}
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="nom_essence" class="absolute text-[10px] text-gray-400 font-extrabold">Essence  du bois</label>
+        <select  id="nom_essence" formControlName="nom_essence"  class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          <option selected>Choisir une essence</option>
+          <option *ngFor="let v of listEssence"  [ngValue]="v.libelle">{{v.libelle}} --{{v.abbreviation}}</option>
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="underline_select2" class="absolute text-[10px] text-gray-400 font-extrabold">Code du lot </label>
+        <select  id="underline_select2" formControlName="code_lots"  class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          <option selected>Choisir un lots</option>
+          <option *ngFor="let v of listRav"  [ngValue]="v.code_rav">{{v.code_rav}} -- {{v.date_rav}}</option>
+        </select>
+      </div>
+
+
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="number" formControlName="poids_moy"  name="poids_moy" id="poids_moy" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="poids_moy"  class=" sidebar-scrollbar no-spinner peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-extrabold">Poids moyen du lot <span class="text-red-700"> (Kg)</span></label>
+        @if( form.controls.poids_moy.invalid && form.controls.poids_moy.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  Poids  invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input type="number" formControlName="qualite"   name="qualite" id="qualite" class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="qualite" class=" sidebar-scrollbar no-spinner peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-extrabold">Qualite du bois <span class="text-red-700">(%)</span></label>
+        @if( form.controls.qualite.invalid && form.controls.qualite.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span>  Qualité invalide!!</span>
+          </div>}
+      </div>
+
+    </div>
+    <div class="grid-cols-3 gap-4 space-x-4">
+      <button type="submit" [disabled]="form.invalid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      <button type="reset"  (click)="resetView()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Retour</button>
+    </div>
+
+  </form>
+  <div class="h-4"></div>
+</div>
+
+
