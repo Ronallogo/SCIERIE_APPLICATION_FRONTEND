@@ -10,7 +10,7 @@ import {_confirmation , _error} from '../../../models/notification';
   selector: 'app-essence-creation',
   imports: [
     ReactiveFormsModule,
-    NgClass
+
   ],
   templateUrl: './essence-creation.component.html',
   standalone: true,

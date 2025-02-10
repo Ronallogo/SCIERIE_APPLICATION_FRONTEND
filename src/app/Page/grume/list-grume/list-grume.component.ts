@@ -8,6 +8,7 @@ import {FournisseurUpdateComponent} from '../../fournisseur/fournisseur-update/f
 import {CreationGrumeComponent} from '../creation-grume/creation-grume.component';
 import {UpdateGrumeComponent} from '../update-grume/update-grume.component';
 import {DetailGrumeComponent} from '../detail-grume/detail-grume.component';
+import { _confirmation, _deletion } from '../../../models/notification';
 
 
 @Component({
@@ -16,7 +17,7 @@ import {DetailGrumeComponent} from '../detail-grume/detail-grume.component';
     NgClass,
     ReactiveFormsModule,
     NgxPaginationModule,
-    FournisseurUpdateComponent,
+
     CreationGrumeComponent,
     UpdateGrumeComponent,
     DetailGrumeComponent
@@ -31,7 +32,7 @@ export class ListGrumeComponent implements  OnInit{
   public searchForm  = new FormGroup({
     keyword : new FormControl()
   });
-  entete: string[] = ["No" , "code du lots" , "essence du bois" ,"date d'entrée"   , "quantité"  , "Actions"];
+  entete: string[] = ["No" , "code du lots" , "essence du bois" ,"date d'entrée"   , "quantité" , "etat du bois"  , "Actions"];
   currentPage!: string | number;
   grumes: Grume_2[] = [];
 
@@ -84,8 +85,15 @@ export class ListGrumeComponent implements  OnInit{
 
   }
 
-  delete(id_grume: any) {
-
+ async delete(id_grume: any) {
+      let response = await _deletion("Voulez-vous supprimer ce lot de grume??");
+      if(!response) return;
+      this.service.delete(id_grume).subscribe(data=>{
+          console.log(data);
+          this.getAll()
+      },err=>{
+        console.log(err);
+      });
   }
 
   pageChanged($event: number) {

@@ -19,8 +19,7 @@ import {_confirmation, _deletion, _warning} from '../../../models/notification';
   imports: [
     NgClass,
     EssenceUpdateComponent,
-    RouterLinkActive,
-    RouterLink,
+
     EssenceCreationComponent,
     NgxPaginationModule,
     ReactiveFormsModule

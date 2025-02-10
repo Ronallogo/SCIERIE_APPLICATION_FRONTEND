@@ -19,6 +19,7 @@ import {forkJoin} from 'rxjs';
   styleUrl: './update-grume.component.css'
 })
 export class UpdateGrumeComponent  implements OnInit{
+
   protected form = new  FormGroup({
     code_lots : new FormControl("" ,  [Validators.required]) ,
     longueur_moy : new FormControl(0 , [Validators.required]) ,
@@ -48,7 +49,8 @@ export class UpdateGrumeComponent  implements OnInit{
       poids_moy :  this.form.value.poids_moy ,
       quantite : this.form.value.quantite ,
       qualite :  this.form.value.qualite ,
-      nom_essence :  this.form.value.nom_essence
+      nom_essence :  this.form.value.nom_essence ,
+      id_grume : this.service.id_grume
     }).subscribe(data=>{
       console.log(data);
       _confirmation("lots de grume modifié avec succès!!!!");
@@ -71,6 +73,7 @@ export class UpdateGrumeComponent  implements OnInit{
           console.log(this.listRav);
           this.init(this.service.getGrume());
 
+
         } ,
         error : (error)=>{ console.log(error);}
       }
@@ -86,6 +89,7 @@ export class UpdateGrumeComponent  implements OnInit{
     this.form.controls.qualite.setValue(g.qualite)
     this.form.controls.quantite.setValue(g.quantite);
     this.form.controls.code_lots.setValue(g.code_lots);
+
 
   }
 

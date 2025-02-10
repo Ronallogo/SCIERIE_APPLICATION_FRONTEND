@@ -69,6 +69,7 @@ export class ChartEssenceStockComponent implements OnInit {
             'rgba(153, 102, 255, 0.2)',
             'rgba(201, 203, 207, 0.2)'
           ],
+          
           borderColor: [
             'rgb(255, 99, 132)',
             'rgb(255, 159, 64)',
@@ -82,12 +83,29 @@ export class ChartEssenceStockComponent implements OnInit {
         }]
       },
       options: {
+        plugins :{
+        
+          legend:{
+            labels :{
+              font:{
+                 size : 15 ,
+                 family : 'Lexend Giga, sans-serif' ,
+                 weight : "extrabold"
+              }
+            }
+          }
+        },
         indexAxis: 'y',
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true ,
+
+
           }
-        }
+
+        } ,
+
+
       }
     });
   }

@@ -9,6 +9,8 @@ import {Essence_1, Grume_2} from '../../../models/Models';
 })
 export class GrumeService {
   public hide : string = "liste";
+  public id_grume! : number ;
+
   protected grume!: Grume_2
 
   constructor(private http: HttpClient) { }
@@ -20,6 +22,7 @@ export class GrumeService {
 
 
   getGrume(){
+    this.id_grume = this.grume.id_grume ;
     return    this.grume ;
   }
   setGrume(grume : Grume_2){
@@ -41,5 +44,9 @@ export class GrumeService {
   update(g : any){
       console.log(g);
       return this.http.put(BASE_URL+"/grume/edit" , g)
+  }
+
+  delete(id : number):Observable<any>{
+      return this.http.delete(BASE_URL+"/grume/delete/" +id);
   }
 }

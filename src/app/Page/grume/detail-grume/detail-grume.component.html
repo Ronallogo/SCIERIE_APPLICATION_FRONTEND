@@ -65,10 +65,10 @@
     <div class="grid md:grid-cols-3    md:gap-6">
       <div class="relative z-0 w-full   mb-2 group">
         <div class="mb-5">
-          <span  class=" underline text-base text-gray-500     font-extrabold">Date d'entrée<span class="text-red-700">(Dte)</span></span>
+          <span  class=" underline text-base text-gray-500     font-extrabold">Poids du lots<span class="text-red-700">(Tn)</span></span>
         </div>
         <div>
-          <p class="font-extrabold text-2xl">{{grume.entree}}</p>
+          <p class="font-extrabold text-2xl">{{(grume.quantite * grume.poids_moy)/1000}}</p>
         </div>
       </div>
       <div class="relative z-0 w-full   mb-2 group">
@@ -82,7 +82,7 @@
       </div>
       <div class="relative z-0 w-full   mb-2 group">
         <div class="mb-5">
-          <span   class="  underline  text-base text-gray-500     font-extrabold">  estimation du moyen poids du lots <span class="text-red-700">(Kg)</span> </span>
+          <span   class="  underline  text-base text-gray-500     font-extrabold">poids moyen des bois <span class="text-red-700">(Kg)</span> </span>
         </div>
         <div>
           <p  class=" font-extrabold text-2xl">{{grume.poids_moy}}</p>

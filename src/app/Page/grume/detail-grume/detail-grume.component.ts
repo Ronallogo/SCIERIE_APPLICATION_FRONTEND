@@ -7,7 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'app-detail-grume',
   imports: [
-    NgForOf,
+
     ReactiveFormsModule
   ],
   standalone : true ,

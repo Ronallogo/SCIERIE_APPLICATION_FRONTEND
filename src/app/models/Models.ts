@@ -35,6 +35,7 @@ export interface Grume_1{
   id_essence :number;
   nom_essence :string;
   entree :string;
+  traiter : boolean ;
 
 
 }
