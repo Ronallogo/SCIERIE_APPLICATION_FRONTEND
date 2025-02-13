@@ -14,11 +14,13 @@ import { GrumeChartComponent } from '../grume-chart/grume-chart.component';
   styleUrl: './grume.component.css'
 })
 export class GrumeComponent  implements  OnInit{
-  qtGrumes: number = 0;
+  qtGrumes!:  number;
   qtBoisTraite !: number ;
   ngOnInit(): void {
       this.qtGrumes =  Number(localStorage.getItem('qtGrume')) ;
       console.log(this.qtGrumes)
+      this.qtBoisTraite = Number(localStorage.getItem('qtBoisTraiter'))
+    console.log(this.qtBoisTraite)
   }
 
 }

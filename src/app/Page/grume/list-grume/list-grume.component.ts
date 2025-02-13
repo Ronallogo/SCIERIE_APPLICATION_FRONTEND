@@ -35,6 +35,7 @@ export class ListGrumeComponent implements  OnInit{
   entete: string[] = ["No" , "code du lots" , "essence du bois" ,"date d'entrée"   , "quantité" , "etat du bois"  , "Actions"];
   currentPage!: string | number;
   grumes: Grume_2[] = [];
+  grumeTraiter!: number;
 
 
 
@@ -52,14 +53,21 @@ export class ListGrumeComponent implements  OnInit{
       this.service.getAll().subscribe(data=>{
           this.grumes = data ;
           let qt = 0 ;
-          let qtMoy = 0 ;
+          let qtBoisTraiter = 0
+
            this.grumes.forEach(x=>{
               qt += x.quantite ;
+              if(x.traiter){
+                qtBoisTraiter += 1  ;
+
+              }
+
 
 
           })
           localStorage.setItem("qtGrume" , String(qt))
-          localStorage.setItem("qtGrumeMoy" , String(qt/this.grumes.length))
+          localStorage.setItem("qtBoisTraiter" , String(qtBoisTraiter))
+
           console.log(data);
       },error => {
         console.log(error)

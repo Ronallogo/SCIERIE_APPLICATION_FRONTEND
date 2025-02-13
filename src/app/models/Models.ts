@@ -1,4 +1,4 @@
-
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 export interface RouteInfo {
@@ -110,3 +110,28 @@ export interface chartTaxeFournisseur{
    nom_fournisseurs  : string[];
    taxe_abbatages : number[] ;
 }
+
+
+export interface  Traitement{
+  id_traitement :number ;
+  nom_traitement  : string;
+  description :string;
+  bois_a_traiter : string ;
+  pourcent_reduction_long :number;
+  pourcent_reduction_diam :number;
+  pourcent_reduction_poids :number;
+  pourcent_reduction_cubage :number;
+
+}
+
+
+export const  formulaireTraitement  = new FormGroup({
+  nom_traitement  : new FormControl("" , [Validators.required ,Validators.minLength(3) ]) ,
+  description : new FormControl("" , [Validators.required ,Validators.minLength(3) ]) ,
+  bois_a_traiter : new FormControl( "" ,[Validators.required , Validators.min(2) , Validators.max(100)])  ,
+  pourcent_reduction_long : new FormControl("" , [Validators.required , Validators.min(2) , Validators.max(100)])  ,
+  pourcent_reduction_diam : new FormControl("", [Validators.required , Validators.min(2) , Validators.max(100)])  ,
+  pourcent_reduction_poids : new FormControl("" , [Validators.required , Validators.min(2) , Validators.max(100)])  ,
+  pourcent_reduction_cubage : new FormControl("" , [Validators.required , Validators.min(2) , Validators.max(100)])  ,
+
+});
