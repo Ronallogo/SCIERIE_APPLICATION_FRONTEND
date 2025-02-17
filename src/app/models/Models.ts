@@ -135,3 +135,27 @@ export const  formulaireTraitement  = new FormGroup({
   pourcent_reduction_cubage : new FormControl("" , [Validators.required , Validators.min(2) , Validators.max(100)])  ,
 
 });
+
+
+export interface GrumeTraiter{
+  id_operation : number ;
+  code_grume : string;
+  id_traitement : number;
+   nom_traitement  : string;
+   bois_associe : string ;
+  date_traitement : string;
+}
+
+
+
+export function   getTodayDate(): string {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const h  = String(today.getHours())
+  const m = String(today.getMinutes());
+
+
+  return `${year}-${month}-${day}-${h}:${m}`;
+}

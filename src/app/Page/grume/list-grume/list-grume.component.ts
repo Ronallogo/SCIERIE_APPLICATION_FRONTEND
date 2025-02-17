@@ -3,12 +3,14 @@ import {NgClass} from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {GrumeService} from '../service/grume.service';
-import {Grume_2} from '../../../models/Models';
+import {getTodayDate, Grume_2, GrumeTraiter, Traitement} from '../../../models/Models';
 import {FournisseurUpdateComponent} from '../../fournisseur/fournisseur-update/fournisseur-update.component';
 import {CreationGrumeComponent} from '../creation-grume/creation-grume.component';
 import {UpdateGrumeComponent} from '../update-grume/update-grume.component';
 import {DetailGrumeComponent} from '../detail-grume/detail-grume.component';
-import { _confirmation, _deletion } from '../../../models/notification';
+import {_already, _confirmation, _deletion, _getTraitement} from '../../../models/notification';
+import {TraitementService} from '../../traitement/service/traitement.service';
+
 
 
 @Component({
@@ -35,15 +37,19 @@ export class ListGrumeComponent implements  OnInit{
   entete: string[] = ["No" , "code du lots" , "essence du bois" ,"date d'entrée"   , "quantité" , "etat du bois"  , "Actions"];
   currentPage!: string | number;
   grumes: Grume_2[] = [];
-  grumeTraiter!: number;
+  grumeTraiter: GrumeTraiter = this.constructorGrumeTraier() ;
+  traitements : Traitement[] = [];
+  nametraitements : string[] =[];
 
 
 
-  constructor(protected  service : GrumeService) {
+
+  constructor(protected  service : GrumeService , protected service_t : TraitementService) {
   }
 
   ngOnInit(): void {
       this.getAll();
+
   }
 
   ajouter() {
@@ -59,7 +65,6 @@ export class ListGrumeComponent implements  OnInit{
               qt += x.quantite ;
               if(x.traiter){
                 qtBoisTraiter += 1  ;
-
               }
 
 
@@ -71,8 +76,12 @@ export class ListGrumeComponent implements  OnInit{
           console.log(data);
       },error => {
         console.log(error)
-      })
+      });
+
+
   }
+
+
 
   search() {
       if(this.searchForm.value.keyword!== ""){
@@ -112,4 +121,54 @@ export class ListGrumeComponent implements  OnInit{
       this.service.hide = "caracteristiques"
       this.service.setGrume(t);
   }
+
+  async traiter(t: Grume_2) {
+    if (t.traiter) {
+      _already("Ce lot de grume est déjà traité!!!");
+      return;
+    } else {
+      this.service_t.getAllTraitementByEssence(t.nom_essence).subscribe(data => {
+        this.traitements = data;
+        this.nametraitements = this.traitements.map(x => x.nom_traitement);
+      }, error => {
+        console.log(error);
+      })
+      let name = await _getTraitement(this.nametraitements);
+      console.log(name);
+     this.initGrumeTraiter(t , name);
+      if(name){
+        this.service.grumeTraiter(this.grumeTraiter).subscribe(data=>{
+          _confirmation("Ce lot grumes est maintenant enregistré comme étant traiter");
+          t.traiter = true;
+        } , error => {
+          console.log(error);
+        })
+      }
+
+
+
+
+    }
+
+  }
+
+  initGrumeTraiter(t : Grume_2 , nameTraitement : string){
+      this.grumeTraiter.code_grume =  t.code_lots  ;
+      this.grumeTraiter.bois_associe = t.nom_essence ;
+      this.grumeTraiter.nom_traitement = nameTraitement ;
+      this.grumeTraiter.date_traitement  = getTodayDate();
+
+
+  }
+
+  constructorGrumeTraier() {
+      let variable : GrumeTraiter = {bois_associe : "" , code_grume : "" ,
+        nom_traitement : "" , date_traitement : "" , id_traitement : 0 , id_operation:0
+      }
+      return variable ;
+
+
+  }
 }
+
+

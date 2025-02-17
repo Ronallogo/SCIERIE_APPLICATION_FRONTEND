@@ -4,6 +4,8 @@ import {NgClass, NgForOf} from "@angular/common";
 import {Essence_2, formulaireTraitement, Traitement} from '../../../models/Models';
 import {TraitementService} from '../service/traitement.service';
 import {EssenceService} from '../../essence/service/essence.service';
+import {_confirmation} from '../../../models/notification';
+
 
 @Component({
   selector: 'app-traitement-update',
@@ -33,7 +35,14 @@ export class TraitementUpdateComponent implements OnInit{
 
 
   modifier(){
-
+      console.log("je suis dans la fonction");
+      let id_traitement = this.traitement.id_traitement ;
+      this.service.update({id_traitement , ...this.form.value}).subscribe(data=>{
+          _confirmation('Modification effectuée avec succès!!!');
+          console.log(data);
+      } , err=>{
+          console.log(err);
+      })
   }
 
 
@@ -58,8 +67,15 @@ export class TraitementUpdateComponent implements OnInit{
       });
   }
 
-  checkForm():boolean {
-      return true ;
+  checkForm():boolean{
+    return (
+
+      ( this.form.controls.nom_traitement.invalid && this.form.controls.nom_traitement.dirty) ||
+      ( this.form.controls.pourcent_reduction_diam.invalid && this.form.controls.pourcent_reduction_diam.dirty) ||
+      ( this.form.controls.pourcent_reduction_long.invalid && this.form.controls.pourcent_reduction_long.dirty) ||
+      ( this.form.controls.pourcent_reduction_poids.invalid && this.form.controls.pourcent_reduction_poids.dirty) ||
+      ( this.form.controls.pourcent_reduction_cubage.invalid && this.form.controls.pourcent_reduction_cubage.dirty)
+    );
   }
 
   resetView() {

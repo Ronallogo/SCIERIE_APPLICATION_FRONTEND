@@ -49,4 +49,8 @@ export class GrumeService {
   delete(id : number):Observable<any>{
       return this.http.delete(BASE_URL+"/grume/delete/" +id);
   }
+
+  grumeTraiter(gt : any):Observable<any>{
+      return this.http.post(BASE_URL+"/grume/gtr/create" , gt) ;
+  }
 }

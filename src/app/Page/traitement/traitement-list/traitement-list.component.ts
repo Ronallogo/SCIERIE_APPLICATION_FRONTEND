@@ -9,15 +9,16 @@ import {UpdateGrumeComponent} from '../../grume/update-grume/update-grume.compon
 import {NgClass} from '@angular/common';
 import {TraitementUpdateComponent} from '../traitement-update/traitement-update.component';
 import {TraitementCreationComponent} from '../traitement-creation/traitement-creation.component';
+import {_deletion} from '../../../models/notification';
 
 @Component({
   selector: 'app-traitement-list',
   imports: [
-    CreationGrumeComponent,
+
     DetailGrumeComponent,
     NgxPaginationModule,
     ReactiveFormsModule,
-    UpdateGrumeComponent,
+
     NgClass,
     TraitementUpdateComponent,
     TraitementCreationComponent
@@ -30,7 +31,7 @@ export class TraitementListComponent implements OnInit{
 
 
     protected traitements  : Traitement[] = [];
-    protected entete : string[] =["No" ,"Nom traitement" , "Rois a traité"  ,"Reduction de la longueur" , "Reduction du diametre" , "Reduction du poids" , "Reduction du cubage" , "Action"];
+    protected entete : string[] =["No" ,"Nom traitement" , "Bois a traité"  ,"Reduction de la longueur" , "Reduction du diametre" , "Reduction du poids" , "Reduction du cubage" , "Action"];
     currentPage:  number = 0 ;
     searchForm =  new FormGroup({keyword : new FormControl()});
     constructor(protected service : TraitementService){}
@@ -51,8 +52,14 @@ export class TraitementListComponent implements OnInit{
 
     }
 
-    delete(id_traitement: number) {
-
+  async  delete(id_traitement: number) {
+        let resp = await  _deletion("Voulez vous supprimer ce traitement???");
+        if(!resp) return ;
+        this.service.delete(id_traitement).subscribe(data=>{
+            this.getAll();
+        },err=>{
+            console.log(err);
+        })
     }
 
   search() {
@@ -75,6 +82,7 @@ export class TraitementListComponent implements OnInit{
       this.service.getAllTraitement().subscribe(data=>{
           this.traitements = data ;
           console.log(this.traitements);
+          localStorage.setItem("qtTraitement" , data.length);
       },error => {
         console.log(error);
       })

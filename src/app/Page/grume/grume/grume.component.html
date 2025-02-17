@@ -33,8 +33,8 @@
           <p class="space-x-10"></p>
           <p class=" text-4xl font-bold mt-2 ">
             @if (qtBoisTraite){
-              {{(qtBoisTraite/1000).toFixed(1)}}K
-              <span class="text-xl font-thin animate__animated animate__fadeIn ">  Grumes</span>
+               {{qtBoisTraite }}
+              <span class="text-xl font-thin animate__animated animate__fadeIn ">Lot  de Grume </span>
             } @else {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="64" height="64" style="shape-rendering: auto; display: block; background: rgb(255, 255, 255);" xmlns:xlink="http://www.w3.org/1999/xlink"><g><circle stroke-linecap="round" fill="none" stroke-dasharray="50.26548245743669 50.26548245743669" stroke="#204d0d" stroke-width="2" r="32" cy="50" cx="50">
                 <animateTransform values="0 50 50;360 50 50" keyTimes="0;1" dur="1.4705882352941175s" repeatCount="indefinite" type="rotate" attributeName="transform"></animateTransform>
@@ -55,10 +55,11 @@
          <app-list-grume></app-list-grume>
     </div>
 
-    <div class=" animate__animated animate__fadeIn  grid grid-cols-1    gap-4  ">
+  <div class=" animate__animated animate__fadeIn  grid grid-cols-1    gap-4  ">
+    <div></div>
 
       <div class=" animate__animated animate__fadeIn    items-center justify-center  h-56 rounded bg-white shadow shadow-gray-500 ">
-        En cours
+        <app-grume-chart></app-grume-chart>
       </div>
 
     </div>

@@ -4,6 +4,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {TraitementService} from '../service/traitement.service';
 import {EssenceService} from '../../essence/service/essence.service';
 import {Essence_2, formulaireTraitement} from '../../../models/Models';
+import {_confirmation} from '../../../models/notification';
 
 @Component({
   selector: 'app-traitement-creation',
@@ -19,17 +20,23 @@ import {Essence_2, formulaireTraitement} from '../../../models/Models';
 export class TraitementCreationComponent implements OnInit{
   protected  form = formulaireTraitement ;
   listEssence:  Essence_2[] = [];
-
-
   constructor(private service : TraitementService , private service_e : EssenceService) {
   }
   ngOnInit(): void {
       this.getData() ;
+      console.log(this.form.value);
 
   }
 
 
   create() {
+    console.log(this.form.value);
+    this.service.create(this.form.value).subscribe(data=>{
+        _confirmation("traitement enregistrer avce succès!!!");
+        console.log(data);
+    } , err=>{
+        console.log(err);
+    })
 
   }
 
