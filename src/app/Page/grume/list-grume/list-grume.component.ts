@@ -59,6 +59,7 @@ export class ListGrumeComponent implements  OnInit{
       this.service.getAll().subscribe(data=>{
           this.grumes = data ;
           let qt = 0 ;
+          localStorage.setItem("firstEssence"  ,String(this.grumes.at(0)?.nom_essence) );
           let qtBoisTraiter = 0
 
            this.grumes.forEach(x=>{
@@ -123,32 +124,39 @@ export class ListGrumeComponent implements  OnInit{
   }
 
   async traiter(t: Grume_2) {
-    if (t.traiter) {
+
+    let name : string = "" ;
+    if (t.traiter ) {
       _already("Ce lot de grume est déjà traité!!!");
+
       return;
     } else {
       this.service_t.getAllTraitementByEssence(t.nom_essence).subscribe(data => {
         this.traitements = data;
         this.nametraitements = this.traitements.map(x => x.nom_traitement);
+        _getTraitement(this.nametraitements).then(n =>{
+          this.initGrumeTraiter(t , n);
+          console.log(n);
+          this.service.grumeTraiter(this.grumeTraiter).subscribe(data=>{
+            _confirmation("Ce lot grumes est maintenant enregistré comme étant traiter");
+
+            t.traiter = true;
+            this.service.update(t).subscribe(data=>{
+              console.log(data);
+            }  ,error =>  console.log(error));
+          } , error => {
+            console.log(error);
+          })
+        });
+
       }, error => {
         console.log(error);
-      })
-      let name = await _getTraitement(this.nametraitements);
-      console.log(name);
-     this.initGrumeTraiter(t , name);
-      if(name){
-        this.service.grumeTraiter(this.grumeTraiter).subscribe(data=>{
-          _confirmation("Ce lot grumes est maintenant enregistré comme étant traiter");
-          t.traiter = true;
-        } , error => {
-          console.log(error);
-        })
-      }
-
+      });
 
 
 
     }
+
 
   }
 
@@ -157,6 +165,8 @@ export class ListGrumeComponent implements  OnInit{
       this.grumeTraiter.bois_associe = t.nom_essence ;
       this.grumeTraiter.nom_traitement = nameTraitement ;
       this.grumeTraiter.date_traitement  = getTodayDate();
+
+
 
 
   }

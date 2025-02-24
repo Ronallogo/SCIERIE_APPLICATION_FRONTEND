@@ -178,14 +178,20 @@ export async function _getTraitement(listTraitement: string[]): Promise<string> 
     inputPlaceholder: "Selectionner un traitement",
     showCancelButton: true,
     inputValidator: (value) => {
-      return new Promise((resolve) => {
-        if (value) {
-          resolve();
-        } else {
-          resolve("Vous devez sélectionner un traitement :)");
+        if(value){
+          return new Promise((resolve) => {
+
+            if (value) {
+              resolve();
+            } else {
+              resolve("Vous devez sélectionner un traitement :)");
+            }
+          });
+        }else{
+            return "";
         }
-      });
-    }
+      }
+
   });
 
   return result ? listTraitement[Number(result)] : "";

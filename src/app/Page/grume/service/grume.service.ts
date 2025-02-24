@@ -41,7 +41,7 @@ export class GrumeService {
       return this.http.post(BASE_URL+"/grume/create" , g)
   }
 
-  update(g : any){
+  update(g : any) :Observable<any>{
       console.log(g);
       return this.http.put(BASE_URL+"/grume/edit" , g)
   }
@@ -52,5 +52,8 @@ export class GrumeService {
 
   grumeTraiter(gt : any):Observable<any>{
       return this.http.post(BASE_URL+"/grume/gtr/create" , gt) ;
+  }
+  getData(essence : string):Observable<any>{
+      return this.http.get(BASE_URL+"/grume/dataGrumeTraiter/"+essence);
   }
 }

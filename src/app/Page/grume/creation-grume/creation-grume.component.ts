@@ -6,7 +6,7 @@ import {NgForOf} from '@angular/common';
 import {Essence_2, Ravitaillement} from '../../../models/Models';
 import {forkJoin} from 'rxjs';
 import {RavService} from '../../rav/service/rav.service';
-import {_confirmation} from '../../../models/notification';
+import {_confirmation, _warning} from '../../../models/notification';
 
 @Component({
   selector: 'app-creation-grume',
@@ -54,6 +54,7 @@ export class CreationGrumeComponent implements OnInit {
           console.log(data);
           _confirmation("lots de grume enregistré avec succès!!!!");
       } , error => {
+          if(error.error == "low capacity")  _warning("Veuillez changer la quantité de bois du ravitaillement!!!")
           console.log(error);
       })
 
