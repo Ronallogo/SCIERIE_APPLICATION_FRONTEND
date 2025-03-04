@@ -45,6 +45,7 @@ export class LocationListComponent implements  OnInit{
   getAll(){
       this.service.getAll().subscribe( (data) => {
           this.listLocation = data ;
+
       } , error => {
         console.log(error);
       })
@@ -74,6 +75,8 @@ export class LocationListComponent implements  OnInit{
 
     this.service.edit(t).subscribe(data=>{
         _confirmation("Localisation modifiée !!");
+        t.nom_pays = "";
+        t.nom_ville = "";
         this.getAll() ;
 
     } , error => {

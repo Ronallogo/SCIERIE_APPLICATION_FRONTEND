@@ -9,6 +9,7 @@ import {FournisseurComponent} from './Page/fournisseur/fournisseur/fournisseur.c
 import {PortVillePaysComponent} from './Page/port_ville_pays/port-ville-pays/port-ville-pays.component';
 import {TraitementComponent} from './Page/traitement/traitement/traitement.component';
 import {LocationComponent} from './Page/location/location/location.component';
+import { TarifComponent } from './Page/tarif/tarif/tarif.component';
 
 
 export const routes: Routes = [
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'port-ville-pays', component:  PortVillePaysComponent },
   { path: 'traitement', component:   TraitementComponent },
   { path: 'location', component:    LocationComponent },
+  { path: 'tarif', component:     TarifComponent },
 
 
 ];
