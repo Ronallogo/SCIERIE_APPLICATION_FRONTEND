@@ -44,4 +44,4 @@ testem.log
 Thumbs.db
 
 #other
-env
+src/app/env

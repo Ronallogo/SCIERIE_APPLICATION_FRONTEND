@@ -1,0 +1,118 @@
+@if (service.hide == "liste"){
+  <div  [ngClass]="{'animate__animated animate__fadeIn': service.hide == 'liste'}" >
+    <button  (click)="ajouter()" style="margin-right: 30%" type="button" class="     md:w-60 text-white text-lg font-bold bg-blue-700     focus:ring-4 focus:ring-blue-300 rounded-lg px-5 py-2.5 mb-2">
+
+      <span class="  text-base ">AJOUTER</span>
+    </button>
+
+
+  </div>
+}
+
+<div class="overflow-x-auto grid-cols-1 gap-y-2 sidebar-scrollbar">
+  @if (service.hide == "liste"){
+    <table
+      [ngClass]="{'animate__animated animate__fadeInDown': service.hide =='liste'}"
+      class="   font-bold text-2xl h-full w-full text-left rtl:text-right text-gray-500">
+      <thead class="rounded-2xl    text-sm font-extrabold   text-white uppercase bg-green-600">
+      <tr>
+        @for(e of  headers ; track  e){
+          <th scope="col" class="   items-center justify-center  px-6 py-3"> {{e}}</th>
+        }
+
+      </tr>
+      </thead>
+      <tbody >
+        @for(t of  listLocation  | paginate: {
+          itemsPerPage: 4,
+          currentPage: currentPage,
+          totalItems: listLocation.length} ; track  t.id_ville){
+          <tr (mouseenter)="indexLocationFunction(t)"   class=" animate__animated animate__fadeIn odd:bg-white bg-gray-50 border-b text-base">
+            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">
+
+              {{listLocation.indexOf(t) + 1}}
+            </th>
+            <td class="px-6 py-4 justify-center items-center">
+              @if(onUpdating && indexedLocation == t.id_ville){
+                <input  style="width: 50%" type="text" name="nom_pays" [(ngModel)]="nom_pays"   aria-describedby="helper-text-explanation"  class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out"   required />
+                {{nom_pays}}
+              }@else{
+                <span class="animate__animated animate__fadeIn"> {{t.nom_pays}}</span>
+              }
+
+            </td>
+            <td class="px-6 py-4 justify-center items-center">
+              @if(onUpdating && indexedLocation == t.id_ville){
+              <input style="width: 50%" type="text" name="nom_pays" [(ngModel)]="nom_ville" aria-describedby="helper-text-explanation" class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out" required />
+              {{nom_ville}}
+              }@else{
+              <span class="animate__animated animate__fadeIn"> {{t.nom_ville}}</span>
+              }
+            </td>
+
+            <td class="px-6 py-4 grid  grid-cols-3 gap-1 ">
+
+              @if(onUpdating && indexedLocation == t.id_ville){
+                <a  (click)="modifier(t)">
+                  <svg class=" animate-pulse" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.0789 3V2.25V3ZM3.67981 11.3333H2.92981H3.67981ZM3.67981 13L3.15157 13.5324C3.44398 13.8225 3.91565 13.8225 4.20805 13.5324L3.67981 13ZM5.88787 11.8657C6.18191 11.574 6.18377 11.0991 5.89203 10.8051C5.60029 10.511 5.12542 10.5092 4.83138 10.8009L5.88787 11.8657ZM2.52824 10.8009C2.2342 10.5092 1.75933 10.511 1.46759 10.8051C1.17585 11.0991 1.17772 11.574 1.47176 11.8657L2.52824 10.8009ZM18.6156 7.39279C18.8325 7.74565 19.2944 7.85585 19.6473 7.63892C20.0001 7.42199 20.1103 6.96007 19.8934 6.60721L18.6156 7.39279ZM12.0789 2.25C7.03155 2.25 2.92981 6.3112 2.92981 11.3333H4.42981C4.42981 7.15072 7.84884 3.75 12.0789 3.75V2.25ZM2.92981 11.3333L2.92981 13H4.42981L4.42981 11.3333H2.92981ZM4.20805 13.5324L5.88787 11.8657L4.83138 10.8009L3.15157 12.4676L4.20805 13.5324ZM4.20805 12.4676L2.52824 10.8009L1.47176 11.8657L3.15157 13.5324L4.20805 12.4676ZM19.8934 6.60721C18.287 3.99427 15.3873 2.25 12.0789 2.25V3.75C14.8484 3.75 17.2727 5.20845 18.6156 7.39279L19.8934 6.60721Z" fill="#0b43f9"></path> <path opacity="0.5" d="M11.8825 21V21.75V21ZM20.3137 12.6667H21.0637H20.3137ZM20.3137 11L20.8409 10.4666C20.5487 10.1778 20.0786 10.1778 19.7864 10.4666L20.3137 11ZM18.1002 12.1333C17.8056 12.4244 17.8028 12.8993 18.094 13.1939C18.3852 13.4885 18.86 13.4913 19.1546 13.2001L18.1002 12.1333ZM21.4727 13.2001C21.7673 13.4913 22.2421 13.4885 22.5333 13.1939C22.8245 12.8993 22.8217 12.4244 22.5271 12.1332L21.4727 13.2001ZM5.31769 16.6061C5.10016 16.2536 4.63806 16.1442 4.28557 16.3618C3.93307 16.5793 3.82366 17.0414 4.0412 17.3939L5.31769 16.6061ZM11.8825 21.75C16.9448 21.75 21.0637 17.6915 21.0637 12.6667H19.5637C19.5637 16.8466 16.133 20.25 11.8825 20.25V21.75ZM21.0637 12.6667V11H19.5637V12.6667H21.0637ZM19.7864 10.4666L18.1002 12.1333L19.1546 13.2001L20.8409 11.5334L19.7864 10.4666ZM19.7864 11.5334L21.4727 13.2001L22.5271 12.1332L20.8409 10.4666L19.7864 11.5334ZM4.0412 17.3939C5.65381 20.007 8.56379 21.75 11.8825 21.75V20.25C9.09999 20.25 6.6656 18.7903 5.31769 16.6061L4.0412 17.3939Z" fill="#0b43f9"></path> </g>
+                  </svg>
+                </a>
+              }@else{
+                <a (click)="listenUpdate(t)"    >
+                  <svg  class="animate__animated animate__fadeIn"   width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="edit"> <g> <path d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8" fill="none" stroke="#00ff6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <polygon fill="none" points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8" stroke="#00ff6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> </g> </g> </g> </g>
+                  </svg>
+                </a>
+
+              }
+              <a  (click)="delete(t.id_ville)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                <svg   width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 12V17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 12V17" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+                </svg>
+              </a>
+
+            </td>
+          </tr>
+        }
+
+
+      </tbody>
+
+
+    </table>
+    @if( listLocation.length == 0){
+      <div class="   px-96 flex justify-center items-center align-middle animate__animated animate__fadeIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="64" height="64" style="shape-rendering: auto; display: block; background: rgb(255, 255, 255);" xmlns:xlink="http://www.w3.org/1999/xlink"><g><circle stroke-linecap="round" fill="none" stroke-dasharray="50.26548245743669 50.26548245743669" stroke="#204d0d" stroke-width="2" r="32" cy="50" cx="50">
+          <animateTransform values="0 50 50;360 50 50" keyTimes="0;1" dur="1.4705882352941175s" repeatCount="indefinite" type="rotate" attributeName="transform"></animateTransform>
+        </circle><g></g></g><!-- [ldio] generated by https://loading.io --></svg>
+      </div>
+    }
+    @if( listLocation.length > 0){
+      <div class=" flex justify-center items-center w-full  ">
+        <pagination-controls
+          class="pagination-controls"
+          (pageChange)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+          previousLabel="Précédant"
+          nextLabel="suivant"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+
+
+        >
+        </pagination-controls>
+      </div>
+
+    }
+
+  }
+  @else if(service.hide=='modifier'){
+    <app-fournisseur-update [ngClass]="{'animate__animated animate__fadeInUp':service.hide=='modifier'}"></app-fournisseur-update>
+  }
+  @else if(service.hide=='ajouter'){
+    <app-fournisseur-creation [ngClass]="{'animate__animated animate__fadeInUp':service.hide=='ajouter'}"></app-fournisseur-creation>
+  }
+
+
+
+
+</div>

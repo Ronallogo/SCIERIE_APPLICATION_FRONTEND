@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Port_1, Port_2} from '../../../models/Models';
-import {BASE_URL} from '../../../../../env/env';
+import {BASE_URL} from '../../../env/env';
 import {Observable} from 'rxjs';
 import {readUsedSize} from 'chart.js/helpers';
 

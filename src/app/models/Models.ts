@@ -159,3 +159,12 @@ export function   getTodayDate(): string {
 
   return `${year}-${month}-${day}-${h}:${m}`;
 }
+
+
+export interface Location{
+  id_pays : number ;
+  id_ville : number ;
+  nom_pays : string ;
+  nom_ville : string ;
+
+}

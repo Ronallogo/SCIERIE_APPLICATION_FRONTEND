@@ -8,6 +8,7 @@ import {GrumeComponent} from './Page/grume/grume/grume.component';
 import {FournisseurComponent} from './Page/fournisseur/fournisseur/fournisseur.component';
 import {PortVillePaysComponent} from './Page/port_ville_pays/port-ville-pays/port-ville-pays.component';
 import {TraitementComponent} from './Page/traitement/traitement/traitement.component';
+import {LocationComponent} from './Page/location/location/location.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'fournisseur', component: FournisseurComponent },
   { path: 'port-ville-pays', component:  PortVillePaysComponent },
   { path: 'traitement', component:   TraitementComponent },
+  { path: 'location', component:    LocationComponent },
 
 
 ];

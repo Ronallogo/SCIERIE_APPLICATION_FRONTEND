@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BASE_URL} from '../../../../../env/env';
+import {BASE_URL} from '../../../env/env';
 import {Observable} from 'rxjs';
 import {Essence_1, Grume_2} from '../../../models/Models';
 

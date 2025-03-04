@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Essence_1, Essence_2,} from '../../../models/Models';
 import {Observable} from 'rxjs';
-import {BASE_URL} from '../../../../../env/env';
+import {BASE_URL} from '../../../env/env';
 import {readUsedSize} from 'chart.js/helpers';
 
 
