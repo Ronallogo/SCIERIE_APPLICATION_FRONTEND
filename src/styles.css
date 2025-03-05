@@ -28,32 +28,38 @@ body { margin: 0;
   -moz-appearance: textfield;
 }
 
-
 @keyframes moveUpDown {
-  0%, 100% {
+  0% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(calc(100vh - 100%));
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
 @keyframes moveLeftRight {
-  0%, 100% {
+  0% {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(20px);
+    transform: translateX(calc(100vw - 100%));
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
 .moving-up-down {
-  animation: moveUpDown 3s ease-in-out infinite;
+  animation: moveUpDown 120s ease-in-out infinite;
 }
 
 .moving-left-right {
-  animation: moveLeftRight 4s ease-in-out infinite;
+  animation: moveLeftRight 120s ease-in-out infinite;
 }
+
 
 /* Personnalisation de la scrollbar */
 .sidebar-scrollbar::-webkit-scrollbar {

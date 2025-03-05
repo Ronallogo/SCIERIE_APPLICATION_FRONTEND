@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PortListComponent} from '../../port_ville_pays/port-list/port-list.component';
 import {LocationListComponent} from '../location-list/location-list.component';
+import {LocationService} from '../service/location.service';
 
 @Component({
   selector: 'app-location',
@@ -20,7 +21,17 @@ export class LocationComponent {
     keyword : new FormControl()
   });
 
-  search() {
+  constructor(protected service : LocationService) {
+  }
 
+  search() {
+        if(String(this.searchForm.value.keyword) == ""){
+            this.service.getAll().subscribe(data=>{
+                this.service.listLocation = data ;
+            } , e=> console.log(e))
+        }
+        this.service.search(String(this.searchForm.value.keyword)).subscribe(data=>{
+            this.service.listLocation = data ;
+        } , e=> console.log(e));
   }
 }

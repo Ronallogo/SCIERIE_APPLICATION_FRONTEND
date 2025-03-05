@@ -22,6 +22,7 @@ export class PortVillePaysComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   search() {
       if(String(this.searchForm.controls['keyword'].value) == ""){
           this.service.getAllPort().subscribe(data=>{

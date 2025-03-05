@@ -168,3 +168,15 @@ export interface Location{
   nom_ville : string ;
 
 }
+
+export interface Tarif{
+  id_tarif : number ,
+  code_tarif : string  ,
+  essence : string ,
+  diam_moy : number ,
+  long_moy : number ,
+  montant_unitaire : number ,
+  monnaie : string
+}
+
+

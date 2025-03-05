@@ -6,7 +6,7 @@ import {FournisseurCreationComponent} from '../../fournisseur/fournisseur-creati
 import {FournisseurUpdateComponent} from '../../fournisseur/fournisseur-update/fournisseur-update.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {NgClass} from '@angular/common';
-import {_confirmation} from '../../../models/notification';
+import {_confirmation, _deletion, _warning} from '../../../models/notification';
 
 @Component({
   selector: 'app-location-list',
@@ -24,11 +24,13 @@ import {_confirmation} from '../../../models/notification';
 })
 export class LocationListComponent implements  OnInit{
 
-  protected  listLocation :  Location[] = [] ;
+
+  protected location : Location  = {id_pays  :  0 , nom_ville : "" , nom_pays  :"" , id_ville : 0 };
 
   protected headers : string[] = ["No" , "Nom du pays ", "Nom de la ville" , "Actions"]
   protected currentPage!: string | number;
   protected onUpdating : boolean  =  false ;
+  protected view: boolean = false
 
   protected indexedLocation !: number
 
@@ -44,7 +46,7 @@ export class LocationListComponent implements  OnInit{
 
   getAll(){
       this.service.getAll().subscribe( (data) => {
-          this.listLocation = data ;
+          this.service.listLocation = data ;
 
       } , error => {
         console.log(error);
@@ -52,7 +54,20 @@ export class LocationListComponent implements  OnInit{
   }
 
   ajouter() {
+      if(this.location.nom_pays.length < 5 || this.location.nom_ville.length < 5) {
+        _warning("localisation semble invalide !!");
+        this.setViews() ;
+        return ;
 
+      }
+      this.service.create(this.location).subscribe(data=>{
+        console.log(data);
+        _confirmation("nouvelle localisation ajoutée") ;
+        this.getAll() ;
+        this.setViews() ;
+      } , error => {
+        console.log(error);
+      })
   }
   listenUpdate(t : Location){
     this.onUpdating = !this.onUpdating;
@@ -74,7 +89,6 @@ export class LocationListComponent implements  OnInit{
     t.nom_ville = this.nom_ville ;
 
     this.service.edit(t).subscribe(data=>{
-        _confirmation("Localisation modifiée !!");
         t.nom_pays = "";
         t.nom_ville = "";
         this.getAll() ;
@@ -87,12 +101,22 @@ export class LocationListComponent implements  OnInit{
 
   }
 
-  delete(id_ville: number) {
-
+  async delete(id_ville: number) {
+    let response = await _deletion("Voulez vous supprimez cette localisation!!!!");
+    if (!response) return;
+    this.service.delete(id_ville).subscribe(data=>{
+        this.getAll() ;
+    },error => {
+      console.log(error);
+    })
   }
 
   pageChanged($event: number) {
       this.currentPage = $event ;
 
+  }
+
+  setViews(){
+      this.view = !this.view ;
   }
 }

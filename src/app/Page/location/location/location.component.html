@@ -4,7 +4,7 @@
       <div class="flex rounded-[2.5rem] h-44 bg-white w-full shadow shadow-gray-500 items-center justify-center">
         <div class="text-center w-full px-44 transition-all duration-700 ease-in-out hover:px-20">
           <span class="block mb-6 text-3xl font-thin text-gray-800">Recherche d'une  localisation</span>
-          <form   [formGroup]="searchForm"  class="flex items-center w- ">
+          <form (ngSubmit)="search()"   [formGroup]="searchForm"  class="flex items-center w- ">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
