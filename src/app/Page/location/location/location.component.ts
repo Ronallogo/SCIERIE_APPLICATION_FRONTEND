@@ -28,7 +28,8 @@ export class LocationComponent {
         if(String(this.searchForm.value.keyword) == ""){
             this.service.getAll().subscribe(data=>{
                 this.service.listLocation = data ;
-            } , e=> console.log(e))
+            } , e=> console.log(e)) ;
+            return ;
         }
         this.service.search(String(this.searchForm.value.keyword)).subscribe(data=>{
             this.service.listLocation = data ;

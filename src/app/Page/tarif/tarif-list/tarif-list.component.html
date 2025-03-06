@@ -1,9 +1,14 @@
 @if (service.hide == "liste"){
   <div  [ngClass]="{'animate__animated animate__fadeIn': service.hide == 'liste'}" class="flex flex-col md:flex-row mb-4 space-y-4 md:space-y-0 md:space-x-4 justify-center">
-    <button  (click)="ajouter()" style="margin-right: 30%" type="button" class="     md:w-60 text-white text-lg font-bold bg-blue-700     focus:ring-4 focus:ring-blue-300 rounded-lg px-5 py-2.5 mb-2">
+    <button  (click)="ajouter()" style="margin-right: 30%" type="button" class="      md:w-60 text-white text-lg font-bold bg-blue-700     focus:ring-4 focus:ring-blue-300 rounded-lg px-5 py-2.5 mb-2">
 
       <span class="  text-base ">AJOUTER</span>
     </button>
+
+
+
+
+
 
     <form style="width:100%"  [formGroup]="searchForm"  class="flex items-center">
       <label for="simple-search" class="sr-only">Search</label>
