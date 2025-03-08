@@ -32,15 +32,15 @@ export class EssenceComponent implements  OnInit{
 
   getMercuriale(){
      setInterval(()=>{
-       this.service.mercuriale().subscribe(data=>{
-         this.mercuriale = Number(data).toFixed(2);
-       } , err => console.log(err));
-     } , 8000)
+          if(this.service.change){
+            this.service.mercuriale().subscribe(data=>{
+              this.mercuriale = Number(data).toFixed(2);
+              this.qtEssence = Number(localStorage.getItem("qtEssence"));
+              this.qtMoy = Number(localStorage.getItem("qtMoy"));
+            } , err => console.log(err));
+          }
+     } , 1000)
 
-    setInterval(()=>{
-      this.qtEssence = Number(localStorage.getItem("qtEssence"));
-      this.qtMoy = Number(localStorage.getItem("qtGrumeMoy"));
-    } , 5000)
   }
 
 

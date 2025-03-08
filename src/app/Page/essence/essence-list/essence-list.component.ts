@@ -9,6 +9,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {askConfirmation} from '@angular/cli/src/utilities/prompt';
 import {_confirmation, _deletion, _warning} from '../../../models/notification';
+import {forkJoin} from 'rxjs';
 
 
 
@@ -31,6 +32,7 @@ import {_confirmation, _deletion, _warning} from '../../../models/notification';
 })
 export class EssenceListComponent implements OnInit{
 
+  protected  qtMoy! : number ;
 
   public searchForm  = new FormGroup({
       keyword : new FormControl()
@@ -55,12 +57,18 @@ export class EssenceListComponent implements OnInit{
 
 
   getAllEssence(){
-      this.service.getAllEssence().subscribe(data=>{
-          this.essences = data;
+      forkJoin({essence : this.service.getAllEssence() , qtMoy : this.service.qtMoy() }).subscribe({
+        next :(result)=>{
+          this.essences = result.essence;
+          this.service.change = true ;
+          localStorage.setItem("qtMoy" , String(result.qtMoy));
+          localStorage.setItem("qtEssence" , String( this.essences.length)) ;
+          setTimeout(()=>{ this.service.change = false ; } , 2000)
 
-           localStorage.setItem("qtEssence" , String(data.length));
+      }})
 
-      })
+
+
   }
   modifier(essence : Essence_2) {
     this.service.hide = "modifier";

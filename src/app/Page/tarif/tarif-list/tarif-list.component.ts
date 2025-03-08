@@ -7,14 +7,16 @@ import {RavitaillementUpdateComponent} from '../../rav/ravitaillement-update/rav
 import {NgClass} from '@angular/common';
 import {TarifService} from '../service/tarif.service';
 import {forkJoin} from 'rxjs';
+import {TarifCreationComponent} from '../tarif-creation/tarif-creation.component';
+import {TarifUpdateComponent} from '../tarif-update/tarif-update.component';
 
 @Component({
   selector: 'app-tarif-list',
   imports: [
     FormsModule,
     NgxPaginationModule,
-    RavitaillementCreationComponent,
-    RavitaillementUpdateComponent,
+   TarifCreationComponent ,
+    TarifUpdateComponent ,
     ReactiveFormsModule,
     NgClass
   ],
@@ -55,15 +57,21 @@ export class TarifListComponent implements  OnInit{
   }
 
   ajouter() {
-
+      this.service.hide = "ajouter"
   }
 
   search() {
+      if(String(this.searchForm.value.keyword) !== ""){
+        this.service.search(String(this.searchForm.value.keyword)).subscribe(data=>this.tarifs = data , error =>  console.log(error))
+      }else{
+          this.getAll() ;
+      }
 
   }
 
   modifier(t: Tarif) {
-
+      this.service.setTarif(t);
+      this.service.hide = "modifier";
   }
 
   delete(code_rav: any) {

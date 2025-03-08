@@ -105,6 +105,7 @@ export class LocationListComponent implements  OnInit{
     let response = await _deletion("Voulez vous supprimez cette localisation!!!!");
     if (!response) return;
     this.service.delete(id_ville).subscribe(data=>{
+        if(!data) _warning("Veuillez vérifier que cette localisation n'est pas présencte dans d'autre enregistrement !!");
         this.getAll() ;
     },error => {
       console.log(error);

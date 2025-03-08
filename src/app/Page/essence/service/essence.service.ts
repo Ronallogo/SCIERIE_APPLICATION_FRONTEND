@@ -14,6 +14,12 @@ export class EssenceService {
   public essence!: Essence_2 ;
   public quantiteEssence! : number ;
   createEssence: boolean = false;
+  protected mercurial : number = 0;
+  change  : boolean = false   ;
+
+
+
+
   constructor(private http : HttpClient) { }
 
   create(e : Essence_1):Observable<any> {
@@ -49,6 +55,10 @@ export class EssenceService {
   }
   mercuriale():Observable<any>{
       return this.http.get(BASE_URL+"/essence/mercuriale");
+  }
+
+  qtMoy():Observable<any>{
+    return this.http.get(BASE_URL+"/essence/qtMoy");
   }
 
   delete(id : number) : Observable<any> {

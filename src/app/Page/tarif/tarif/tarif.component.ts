@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TarifListComponent } from '../tarif-list/tarif-list.component';
 import { TarifChartComponent } from '../tarif-chart/tarif-chart.component';
+import {TarifService} from '../service/tarif.service';
 
 @Component({
   selector: 'app-tarif',
@@ -20,7 +21,7 @@ export class TarifComponent implements OnInit {
   protected mostChoosed! : number ;
   protected bestTarif!:number ;
 
-  constructor() {
+  constructor(protected service :TarifService) {
   }
   ngOnInit(): void {
   }

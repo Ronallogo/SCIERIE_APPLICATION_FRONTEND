@@ -1,1 +1,83 @@
-<p>tarif-creation works!</p>
+<div  class=" space-y-2 grid-cols-1" >
+  <div class="items-center justify-start text-center  text-3xl font-bold">
+    <p class="space-y-2"> ENREGISTRER UN NOUVEAU TARIFS</p>
+  </div>
+  <hr style="margin-bottom: 2.8%">
+  <form [formGroup]="form"  (ngSubmit)="create()" class="w-full h-full px-4 space-y-5  ">
+
+    <div class="grid md:grid-cols-2   md:gap-6">
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="number" formControlName="diam_moy" name="diam_moy"  id="diam_moy"  class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="diam_moy" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Diametre moyen<span class="text-red-700">*</span></label>
+        @if( form.controls.diam_moy.invalid && form.controls.diam_moy.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Diametre invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="number" formControlName="long_moy" name="long_moy"  id="long_moy"  class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="long_moy" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Longueur moyenne<span class="text-red-700">*</span></label>
+        @if( form.controls.long_moy.invalid && form.controls.long_moy.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Longueur invalide!!</span>
+          </div>}
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="underline_select" class="absolute text-[10px] text-gray-400 mb-3  ">Monnaie <span class="text-red-700">*</span></label>
+        <select  id="underline_select2" formControlName="monnaie"  name="essence" class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          @for(v of monnaies   ; track  v){
+            <option  selected [ngValue]="v.nom_monnaie">{{ v.nom_monnaie}} {{v.abbreviation}}</option>
+          }
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="underline_select" class="absolute text-[10px] text-gray-400 mb-3  ">Essence <span class="text-red-700">*</span></label>
+        <select  id="underline_select" formControlName="essence"  name="essence" class=" focus:max-h-10    block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-500 appearance-none   focus:text-black focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          @for(v of essences   ; track  v){
+            <option  selected [ngValue]="v.libelle">{{ v.libelle}} {{v.abbreviation}}</option>
+          }
+        </select>
+      </div>
+
+    </div>
+    <div class="grid md:grid-cols-1 md:gap-6">
+      <div class="relative z-0 w-full   mb-5 group">
+        <input type="number" formControlName="montant_unitaire" name="montant_unitaire"  id="montant_unitaire"  class="no-spinner block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none     focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="montant_unitaire" class="peer-focus:font-medium absolute text-sm text-gray-500   duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"> Montant unitaire<span class="text-red-700">*</span></label>
+        @if( form.controls.montant_unitaire.invalid && form.controls.montant_unitaire.dirty){
+          <div  class="flex grid-cols-2 gap-3 text-red-700">
+            <svg class="mt-1" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16H12.01M12 8V12M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#e40707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span> Montant  invalide!!</span>
+          </div>}
+      </div>
+
+    </div>
+
+    <div class="grid-cols-3 gap-4 space-x-4">
+      <button [ngClass]="{
+          'bg-gray-700 transition-all duration-700 ease-in-out' : checkForm(),
+          'transition-all duration-700 ease-in-out bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' : !checkForm()
+      }"
+              type="submit"
+              [disabled]="checkForm()"
+              class="text-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+        Submit
+      </button>
+      <button type="reset"  (click)="resetView()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">Retour</button>
+    </div>
+
+    @if(checkForm()){
+      <div  class="flex grid-cols-2 gap-3 text-yellow-700 font-semibold animate__animated animate__fadeIn">
+        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="style=bulk"> <g id="warning-circle"> <path id="vector (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12Z" fill="#e9c307"></path> <path id="vector (Stroke)_2" fill-rule="evenodd" clip-rule="evenodd" d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V14.1047C12.75 14.5189 12.4142 14.8547 12 14.8547C11.5858 14.8547 11.25 14.5189 11.25 14.1047V7C11.25 6.58579 11.5858 6.25 12 6.25Z" fill="#ffffff"></path> <path id="ellipse (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M11 17C11 16.4477 11.4477 16 12 16H12.01C12.5623 16 13.01 16.4477 13.01 17C13.01 17.5523 12.5623 18 12.01 18H12C11.4477 18 11 17.5523 11 17Z" fill="#ffffff"></path> </g> </g> </g>
+        </svg>
+        <span>    Rassurez-vous de saisir tout les champs obligatoire!!</span>
+      </div>}
+
+  </form>
+  <div class="h-4"></div>
+</div>
+
+
+

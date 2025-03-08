@@ -5,8 +5,9 @@
         <button  (click)="ajouter()" style="margin-right: 30%" type="button" class=" md:w-60 text-white text-lg font-bold bg-green-600   animate-pulse   focus:ring-4 focus:ring-green-300 rounded-lg px-5 py-2.5 mb-2">
           <span class="  text-base ">ENVOYER</span>
         </button>
-        <input  style="width: 50%" type="text" name="nom_pays" [(ngModel)]="location.nom_pays"   aria-describedby="helper-text-explanation"  class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out"   required />
-        <input  style="width: 50%" type="text" name="nom_ville" [(ngModel)]="location.nom_ville"   aria-describedby="helper-text-explanation"  class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out"   required />
+
+        <input placeholder="Pays"  style="width: 50%" type="text" name="nom_pays" [(ngModel)]="location.nom_pays"   aria-describedby="helper-text-explanation"  class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out"   required />
+        <input  placeholder="Ville" style="width: 50%" type="text" name="nom_ville" [(ngModel)]="location.nom_ville"   aria-describedby="helper-text-explanation"  class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out"   required />
 
       </div>
     }@else{
@@ -44,6 +45,7 @@
             </th>
             <td class="px-6 py-4 justify-center items-center">
               @if(onUpdating && indexedLocation == t.id_ville){
+
                 <input  style="width: 50%" type="text" name="nom_pays" [(ngModel)]="nom_pays"   aria-describedby="helper-text-explanation"  class="w-full py-3 px-4 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out"   required />
 
               }@else{

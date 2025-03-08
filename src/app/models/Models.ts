@@ -179,4 +179,10 @@ export interface Tarif{
   monnaie : string
 }
 
+export interface Monnaie{
+  id_monnaie : number  ,
+  abbreviation  :string;
+   nom_monnaie :string;
+}
+
 

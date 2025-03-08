@@ -27,37 +27,35 @@ body { margin: 0;
 .no-spinner {
   -moz-appearance: textfield;
 }
+.bubble {
+  width: 100px;
+  height: 100px;
 
-@keyframes moveUpDown {
+  border-radius: 50%;
+  position: absolute;
+  bottom: -50px;
+  animation: moveRandom 300s infinite ease-in-out;
+}
+
+@keyframes moveRandom {
   0% {
-    transform: translateY(0);
+    transform: translate(0, 0);
   }
-  50% {
-    transform: translateY(calc(100vh - 100%));
+  20% {
+    transform: translate(20%, -10%);
+  }
+  40% {
+    transform: translate(-15%, -25%);
+  }
+  60% {
+    transform: translate(30%, -35%);
+  }
+  80% {
+    transform: translate(-25%, -50%);
   }
   100% {
-    transform: translateY(0);
+    transform: translate(0, -60%);
   }
-}
-
-@keyframes moveLeftRight {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(calc(100vw - 100%));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.moving-up-down {
-  animation: moveUpDown 120s ease-in-out infinite;
-}
-
-.moving-left-right {
-  animation: moveLeftRight 120s ease-in-out infinite;
 }
 
 
